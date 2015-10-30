@@ -3,7 +3,6 @@
 
 #include <cstddef>
 #include <istream>
-#include <initializer_list>
 #include <vector>
 
 namespace F3 {
@@ -21,28 +20,10 @@ namespace F3 {
 		VEC3_HALF_FLOAT, VEC4_HALF_FLOAT,
 	};
 	
-	enum class AttributeName {
-		POSITION,
-		TEXCOORD,
-		NORMAL,
-		TANGENT,
-		BINORMAL,
-		DIFFUSE
-	};
-	
-	struct Attribute {
-		AttributeType type;
-		AttributeName name;
-		std::size_t offset;
-	};
-	
-	typedef std::vector<Attribute> VertexFormat;
-	
 	class VertexBuffer {
 	public:
 		
 		virtual ~VertexBuffer();
-		const VertexFormat& getFormat() const;
 		std::size_t getVertexSize() const;
 		std::size_t getVertexCount() const;
 		
@@ -50,15 +31,25 @@ namespace F3 {
 		
 		VertexBuffer(const VertexBuffer&) = delete;
 		VertexBuffer& operator=(const VertexBuffer&) = delete;
-		VertexBuffer(
-			std::size_t size, std::size_t count, const VertexFormat& format
-		);
+		VertexBuffer(std::size_t size, std::size_t count);
 		friend class VertexStaticBuffer;
 		friend class VertexStreamBuffer;
 		
 		unsigned int ID;
-		VertexFormat format;
 		std::size_t size, count;
+		
+	};
+	
+	struct Attribute {
+		
+		const VertexBuffer& buffer;
+		const AttributeType type;
+		const std::size_t offset;
+		
+		Attribute(
+			const VertexBuffer& buffer,
+			AttributeType type, std::size_t offset
+		) : buffer(buffer), type(type), offset(offset) {}
 		
 	};
 	
@@ -66,13 +57,15 @@ namespace F3 {
 	public:
 		
 		VertexStaticBuffer(
-			const void* data, std::size_t size, std::size_t count,
-			const VertexFormat& format
+			const void* data,
+			std::size_t size,
+			std::size_t count
 		);
 		
 		VertexStaticBuffer(
-			std::istream& data, std::size_t size, std::size_t count,
-			const VertexFormat& format
+			std::istream& data,
+			std::size_t size,
+			std::size_t count
 		);
 		
 	};
@@ -80,19 +73,16 @@ namespace F3 {
 	class VertexStreamBuffer : public VertexBuffer {
 	public:
 		
+		VertexStreamBuffer(std::size_t size, std::size_t count);
 		VertexStreamBuffer(
-			std::size_t size, std::size_t count,
-			const VertexFormat& format
+			const void* data,
+			std::size_t size,
+			std::size_t count
 		);
-		
 		VertexStreamBuffer(
-			const void* data, std::size_t size, std::size_t count,
-			const VertexFormat& format
-		);
-		
-		VertexStreamBuffer(
-			std::istream& data, std::size_t size, std::size_t count,
-			const VertexFormat& format
+			std::istream& data,
+			std::size_t size,
+			std::size_t count
 		);
 		
 		void update(const void*   data);
@@ -107,16 +97,9 @@ namespace F3 {
 	class VertexArray : private VertexStreamBuffer {
 	public:
 		
-		VertexArray(
-			std::size_t count, const VertexFormat& format
-		);
+		VertexArray(std::size_t count);
+		VertexArray(const T* data, std::size_t count);
 		
-		VertexArray(
-			const T* data,
-			std::size_t count, const VertexFormat& format
-		);
-		
-		using VertexBuffer::getFormat;
 		using VertexBuffer::getVertexSize;
 		using VertexBuffer::getVertexCount;
 		
@@ -136,17 +119,13 @@ namespace F3 {
 	};
 	
 	template <typename T>
-	VertexArray<T>::VertexArray(
-		std::size_t count, const VertexFormat& format
-	) : VertexStreamBuffer(sizeof(T), count, format), array(count)
+	VertexArray<T>::VertexArray(std::size_t count)
+	: VertexStreamBuffer(sizeof(T), count), array(count)
 	{}
 	
 	template <typename T>
-	VertexArray<T>::VertexArray(
-		const T* data,
-		std::size_t count, const VertexFormat& format
-	) : VertexStreamBuffer(data, sizeof(T), count, format),
-		array(data, data + count)
+	VertexArray<T>::VertexArray(const T* data, std::size_t count)
+	: VertexStreamBuffer(data, sizeof(T), count), array(data, data + count)
 	{}
 	
 	template <typename T>

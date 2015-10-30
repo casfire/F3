@@ -8,9 +8,8 @@ using namespace GL;
 
 // VertexBuffer
 
-VertexBuffer::VertexBuffer(
-	std::size_t size, std::size_t count, const VertexFormat& format
-) : ID(0), format(format), size(size), count(count)
+VertexBuffer::VertexBuffer(std::size_t size, std::size_t count)
+: ID(0), size(size), count(count)
 {
 	glGenBuffers(1, &ID);
 	if (ID <= 0) {
@@ -21,11 +20,6 @@ VertexBuffer::VertexBuffer(
 VertexBuffer::~VertexBuffer()
 {
 	glDeleteBuffers(1, &ID);
-}
-
-const VertexFormat& VertexBuffer::getFormat() const
-{
-	return format;
 }
 
 std::size_t VertexBuffer::getVertexSize() const
@@ -41,9 +35,8 @@ std::size_t VertexBuffer::getVertexCount() const
 // VertexStaticBuffer
 
 VertexStaticBuffer::VertexStaticBuffer(
-	const void* data, std::size_t size, std::size_t count,
-	const VertexFormat& format
-) : VertexBuffer(size, count, format)
+	const void* data, std::size_t size, std::size_t count
+) : VertexBuffer(size, count)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 	glBufferData(GL_ARRAY_BUFFER, size * count, data, GL_STATIC_DRAW);
@@ -54,9 +47,8 @@ VertexStaticBuffer::VertexStaticBuffer(
 }
 
 VertexStaticBuffer::VertexStaticBuffer(
-	std::istream& data, std::size_t size, std::size_t count,
-	const VertexFormat& format
-) : VertexBuffer(size, count, format)
+	std::istream& data, std::size_t size, std::size_t count
+) : VertexBuffer(size, count)
 {
 	std::size_t len = size * count;
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
@@ -86,15 +78,13 @@ VertexStaticBuffer::VertexStaticBuffer(
 // VertexStreamBuffer
 
 VertexStreamBuffer::VertexStreamBuffer(
-	std::size_t size, std::size_t count,
-	const VertexFormat& format
-) : VertexStreamBuffer(nullptr, size, count, format)
+	std::size_t size, std::size_t count
+) : VertexStreamBuffer(nullptr, size, count)
 {}
 
 VertexStreamBuffer::VertexStreamBuffer(
-	const void* data, std::size_t size, std::size_t count,
-	const VertexFormat& format
-) : VertexBuffer(size, count, format)
+	const void* data, std::size_t size, std::size_t count
+) : VertexBuffer(size, count)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
 	glBufferData(GL_ARRAY_BUFFER, size * count, data, GL_STREAM_DRAW);
@@ -105,9 +95,8 @@ VertexStreamBuffer::VertexStreamBuffer(
 }
 
 VertexStreamBuffer::VertexStreamBuffer(
-	std::istream& data, std::size_t size, std::size_t count,
-	const VertexFormat& format
-) : VertexBuffer(size, count, format)
+	std::istream& data, std::size_t size, std::size_t count
+) : VertexBuffer(size, count)
 {
 	std::size_t len = size * count;
 	glBindBuffer(GL_ARRAY_BUFFER, ID);
