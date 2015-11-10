@@ -7,19 +7,6 @@
 
 namespace F3 {
 	
-	enum class AttributeType {
-		VEC1_INT8,   VEC2_INT8,   VEC3_INT8,   VEC4_INT8,
-		VEC1_UINT8,  VEC2_UINT8,  VEC3_UINT8,  VEC4_UINT8,
-		VEC1_INT16,  VEC2_INT16,  VEC3_INT16,  VEC4_INT16,
-		VEC1_UINT16, VEC2_UINT16, VEC3_UINT16, VEC4_UINT16,
-		VEC1_INT32,  VEC2_INT32,  VEC3_INT32,  VEC4_INT32,
-		VEC1_UINT32, VEC2_UINT32, VEC3_UINT32, VEC4_UINT32,
-		VEC1_FLOAT,  VEC2_FLOAT,  VEC3_FLOAT,  VEC4_FLOAT,
-		VEC1_DOUBLE, VEC2_DOUBLE, VEC3_DOUBLE, VEC4_DOUBLE,
-		VEC1_HALF_FLOAT, VEC2_HALF_FLOAT,
-		VEC3_HALF_FLOAT, VEC4_HALF_FLOAT,
-	};
-	
 	class VertexBuffer {
 	public:
 		
@@ -37,19 +24,6 @@ namespace F3 {
 		
 		unsigned int ID;
 		std::size_t size, count;
-		
-	};
-	
-	struct Attribute {
-		
-		const VertexBuffer& buffer;
-		const AttributeType type;
-		const std::size_t offset;
-		
-		Attribute(
-			const VertexBuffer& buffer,
-			AttributeType type, std::size_t offset
-		) : buffer(buffer), type(type), offset(offset) {}
 		
 	};
 	
@@ -73,12 +47,17 @@ namespace F3 {
 	class VertexStreamBuffer : public VertexBuffer {
 	public:
 		
-		VertexStreamBuffer(std::size_t size, std::size_t count);
+		VertexStreamBuffer(
+			std::size_t size,
+			std::size_t count
+		);
+		
 		VertexStreamBuffer(
 			const void* data,
 			std::size_t size,
 			std::size_t count
 		);
+		
 		VertexStreamBuffer(
 			std::istream& data,
 			std::size_t size,

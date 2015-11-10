@@ -4,6 +4,7 @@
 #include "Exception.hpp"
 #include "IndexBuffer.hpp"
 #include "VertexBuffer.hpp"
+#include "Attribute.hpp"
 
 namespace F3 {
 	
