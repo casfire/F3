@@ -5,6 +5,7 @@
 #include "IndexBuffer.hpp"
 #include "VertexBuffer.hpp"
 #include "Attribute.hpp"
+#include "Texture.hpp"
 
 namespace F3 {
 	
