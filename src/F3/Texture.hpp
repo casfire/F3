@@ -2,12 +2,10 @@
 #define _F3_TEXTURE_
 
 #include <cstddef>
+#include <cstdint>
+#include <string>
 
 namespace F3 {
-	
-	enum class TextureFormat {
-		UINT8, UINT16, UINT32, FLOAT
-	};
 	
 	enum class TextureFilter {
 		NEAREST,
@@ -21,8 +19,20 @@ namespace F3 {
 		
 		Texture(
 			std::size_t width, std::size_t height,
-			std::size_t channels, const void* data,
-			TextureFormat format, TextureFilter filter,
+			std::size_t channels, const std::uint8_t* pixels,
+			TextureFilter filter = TextureFilter::NEAREST,
+			bool compress = true
+		);
+		
+		Texture(
+			const std::string& filename,
+			TextureFilter filter = TextureFilter::NEAREST,
+			bool compress = true
+		);
+		
+		Texture(
+			const void* memory, std::size_t length,
+			TextureFilter filter = TextureFilter::NEAREST,
 			bool compress = true
 		);
 		

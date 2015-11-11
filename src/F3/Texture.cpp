@@ -1,19 +1,10 @@
 #include "Texture.hpp"
 #include "Exception.hpp"
 #include "opengl.hpp"
+#include "stb_image.h"
 
 using namespace F3;
 using namespace GL;
-
-inline GLint getType(TextureFormat format) {
-	switch (format) {
-	case TextureFormat::UINT8:  return GL_UNSIGNED_BYTE;
-	case TextureFormat::UINT16: return GL_UNSIGNED_SHORT;
-	case TextureFormat::UINT32: return GL_UNSIGNED_INT;
-	case TextureFormat::FLOAT:  return GL_FLOAT;
-	default: throw Error("Invalid texture format.", __FILE__, __LINE__);
-	}
-}
 
 inline GLenum getFormat(std::size_t channels, bool compress) {
 	switch (channels) {
@@ -25,36 +16,7 @@ inline GLenum getFormat(std::size_t channels, bool compress) {
 	}
 }
 
-std::size_t Texture::getWidth() const
-{
-	return width;
-}
-
-std::size_t Texture::getHeight() const
-{
-	return height;
-}
-
-std::size_t Texture::getChannels() const
-{
-	return channels;
-}
-
-Texture::Texture(
-	std::size_t width, std::size_t height,
-	std::size_t channels, const void* data,
-	TextureFormat format, TextureFilter filter,
-	bool compress
-) : ID(0), width(width), height(height), channels(channels) {
-	GLint  internal = getFormat(channels, compress);
-	GLenum external = getFormat(channels, false);
-	GLenum type     = getType(format);
-	glGenTextures(1, &ID);
-	glBindTexture(GL_TEXTURE_2D, ID);
-	glTexImage2D(
-		GL_TEXTURE_2D, 0, internal, width, height,
-		0, external, type, data
-	);
+inline void setFilter(TextureFilter filter) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	switch (filter) {
@@ -91,7 +53,98 @@ Texture::Texture(
 		throw Error("Invalid texture filter.", __FILE__, __LINE__);
 		break;
 	}
+}
+
+std::size_t Texture::getWidth() const
+{
+	return width;
+}
+
+std::size_t Texture::getHeight() const
+{
+	return height;
+}
+
+std::size_t Texture::getChannels() const
+{
+	return channels;
+}
+
+Texture::Texture(
+	std::size_t width, std::size_t height, std::size_t channels,
+	const std::uint8_t* pixels, TextureFilter filter, bool compress
+) : ID(0), width(width), height(height), channels(channels) {
+	GLint  internal = getFormat(channels, compress);
+	GLenum external = getFormat(channels, false);
+	glGenTextures(1, &ID);
+	glBindTexture(GL_TEXTURE_2D, ID);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, internal, width, height,
+		0, external, GL_UNSIGNED_BYTE, pixels
+	);
+	setFilter(filter);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	if (glGetError() != GL_NO_ERROR) {
+		throw Error("Failed to create texture.", __FILE__, __LINE__);
+	}
+}
+
+Texture::Texture(
+	const std::string& filename,
+	TextureFilter filter, bool compress
+) : ID(0) {
+	unsigned char *data; int w, h, c;
+	data = stbi_load(filename.c_str(), &w, &h, &c, 0);
+	if (data == nullptr) {
+		throw Exception(
+			"Failed to load " + filename + ":\n"
+			+ std::string(stbi_failure_reason())
+		);
+	}
+	width = w; height = h; channels = c;
+	GLint  internal = getFormat(channels, compress);
+	GLenum external = getFormat(channels, false);
+	glGenTextures(1, &ID);
+	glBindTexture(GL_TEXTURE_2D, ID);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, internal, width, height,
+		0, external, GL_UNSIGNED_BYTE, data
+	);
+	setFilter(filter);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	stbi_image_free(data);
+	if (glGetError() != GL_NO_ERROR) {
+		throw Error("Failed to create texture.", __FILE__, __LINE__);
+	}
+}
+
+Texture::Texture(
+	const void* memory, std::size_t length,
+	TextureFilter filter, bool compress
+) : ID(0) {
+	unsigned char *data; int w, h, c;
+	data = stbi_load_from_memory(
+		reinterpret_cast<const stbi_uc*>(memory),
+		length, &w, &h, &c, 0
+	);
+	if (data == nullptr) {
+		throw Exception(
+			"Failed to load texture:\n"
+			+ std::string(stbi_failure_reason())
+		);
+	}
+	width = w; height = h; channels = c;
+	GLint  internal = getFormat(channels, compress);
+	GLenum external = getFormat(channels, false);
+	glGenTextures(1, &ID);
+	glBindTexture(GL_TEXTURE_2D, ID);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, internal, width, height,
+		0, external, GL_UNSIGNED_BYTE, data
+	);
+	setFilter(filter);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	stbi_image_free(data);
 	if (glGetError() != GL_NO_ERROR) {
 		throw Error("Failed to create texture.", __FILE__, __LINE__);
 	}
