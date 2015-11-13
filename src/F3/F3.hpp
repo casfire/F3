@@ -6,6 +6,7 @@
 #include "VertexBuffer.hpp"
 #include "Attribute.hpp"
 #include "Texture.hpp"
+#include "Mesh.hpp"
 
 namespace F3 {
 	
