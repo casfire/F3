@@ -16,13 +16,13 @@ namespace F3 {
 	
 	struct Mesh {
 		
-		const Attribute& position;
+		const Attribute position;
 		const IndexBuffer* const indices;
 		const std::size_t start, count;
 		const MeshType type;
 		
 		Mesh(
-			Attribute& position,
+			const Attribute& position,
 			std::size_t start, std::size_t count,
 			MeshType type = MeshType::TRIANGLES
 		);
@@ -35,7 +35,7 @@ namespace F3 {
 		);
 		
 		Mesh(
-			Attribute& position,
+			const Attribute& position,
 			MeshType type = MeshType::TRIANGLES
 		);
 		

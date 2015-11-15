@@ -4,7 +4,7 @@
 using namespace F3;
 
 Mesh::Mesh(
-	Attribute& position,
+	const Attribute& position,
 	std::size_t start, std::size_t count,
 	MeshType type
 ) : position(position), indices(nullptr),
@@ -29,7 +29,7 @@ Mesh::Mesh(
 }
 
 Mesh::Mesh(
-	Attribute& position,
+	const Attribute& position,
 	MeshType type
 ) : position(position), indices(nullptr),
 	start(0), count(position.buffer.getVertexCount()), type(type)
