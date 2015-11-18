@@ -42,8 +42,6 @@ namespace F3 {
 		
 	};
 	
-	void CheckGLError(const char* msg, const char* file, long int line);
-	
 }
 
 #endif // _F3_EXCEPTION_
