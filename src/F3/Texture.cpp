@@ -160,3 +160,24 @@ RenderTexture::RenderTexture(
 		throw Error("Failed to create render texture.", __FILE__, __LINE__);
 	}
 }
+
+// DepthTexture
+
+DepthTexture::DepthTexture(
+	std::size_t width,
+	std::size_t height
+)
+: Texture(width, height, 1)
+{
+	glBindTexture(GL_TEXTURE_2D, ID);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height,
+		0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, nullptr
+	);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	if (glGetError() != GL_NO_ERROR) {
+		throw Error("Failed to create depth texture.", __FILE__, __LINE__);
+	}
+}

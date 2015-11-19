@@ -39,6 +39,7 @@ namespace F3 {
 		
 		friend class StaticTexture;
 		friend class RenderTexture;
+		friend class DepthTexture;
 		
 		Texture(const Texture&) = delete;
 		Texture& operator=(const Texture&) = delete;
@@ -82,6 +83,16 @@ namespace F3 {
 			std::size_t channels,
 			RenderTextureFilter filter,
 			RenderTextureFormat format
+		);
+		
+	};
+	
+	class DepthTexture : public Texture {
+	public:
+		
+		DepthTexture(
+			std::size_t width,
+			std::size_t height
 		);
 		
 	};
