@@ -11,6 +11,7 @@ namespace F3 {
 	private:
 		
 		friend class DepthTexture;
+		friend class DepthBuffer;
 		
 		DepthTarget(const DepthTarget&) = delete;
 		DepthTarget& operator=(const DepthTarget&) = delete;

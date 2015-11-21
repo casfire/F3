@@ -23,6 +23,7 @@
 #include "StaticTexture.hpp"
 #include "RenderTexture.hpp"
 #include "DepthTexture.hpp"
+#include "DepthBuffer.hpp"
 
 namespace F3 {
 	
