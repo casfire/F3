@@ -24,6 +24,9 @@
 #include "RenderTexture.hpp"
 #include "DepthTexture.hpp"
 #include "DepthBuffer.hpp"
+#include "RenderWindow.hpp"
+
+#include "Viewport.hpp"
 
 namespace F3 {
 	

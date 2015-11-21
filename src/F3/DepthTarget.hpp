@@ -12,6 +12,7 @@ namespace F3 {
 		
 		friend class DepthTexture;
 		friend class DepthBuffer;
+		friend class Viewport;
 		
 		DepthTarget(const DepthTarget&) = delete;
 		DepthTarget& operator=(const DepthTarget&) = delete;
