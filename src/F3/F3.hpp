@@ -14,8 +14,15 @@
 #include "VertexArray.hpp"
 
 #include "Attribute.hpp"
-#include "Texture.hpp"
 #include "Mesh.hpp"
+
+#include "TextureTarget.hpp"
+#include "RenderTarget.hpp"
+#include "DepthTarget.hpp"
+
+#include "StaticTexture.hpp"
+#include "RenderTexture.hpp"
+#include "DepthTexture.hpp"
 
 namespace F3 {
 	
