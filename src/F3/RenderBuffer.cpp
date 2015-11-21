@@ -18,7 +18,7 @@ RenderBuffer::RenderBuffer(
 	std::size_t channels,
 	RenderBufferFormat format
 )
-: RenderTarget(0)
+: RenderTarget(0, width, height, channels)
 {
 	if (channels == 0) throw Error("Zero channels.", __FILE__, __LINE__);
 	if (channels >= 5) throw Error("More than 4 channels.", __FILE__, __LINE__);

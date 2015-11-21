@@ -17,7 +17,7 @@ DepthTexture::DepthTexture(
 	DepthTextureFormat format
 )
 : TextureTarget(width, height, 1)
-, DepthTarget(TextureTarget::ID)
+, DepthTarget(TextureTarget::ID, width, height)
 {
 	glBindTexture(GL_TEXTURE_2D, TextureTarget::ID);
 	GLenum f = glFormat[static_cast<std::size_t>(format)];

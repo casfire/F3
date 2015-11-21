@@ -16,7 +16,7 @@ DepthBuffer::DepthBuffer(
 	std::size_t height,
 	DepthBufferFormat format
 )
-: DepthTarget(0)
+: DepthTarget(0, width, height)
 {
 	glGenRenderbuffers(1, &ID);
 	if (ID <= 0) {

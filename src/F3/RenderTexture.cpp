@@ -35,7 +35,7 @@ RenderTexture::RenderTexture(
 	RenderTextureFormat format
 )
 : TextureTarget(width, height, channels)
-, RenderTarget(TextureTarget::ID)
+, RenderTarget(TextureTarget::ID, width, height, channels)
 {
 	if (channels == 0) throw Error("Zero channels.", __FILE__, __LINE__);
 	glBindTexture(GL_TEXTURE_2D, TextureTarget::ID);
