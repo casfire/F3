@@ -24,6 +24,7 @@
 #include "RenderTexture.hpp"
 #include "DepthTexture.hpp"
 #include "DepthBuffer.hpp"
+#include "RenderBuffer.hpp"
 
 #include "Viewport.hpp"
 

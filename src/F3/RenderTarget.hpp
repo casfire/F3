@@ -11,6 +11,7 @@ namespace F3 {
 	private:
 		
 		friend class RenderTexture;
+		friend class RenderBuffer;
 		friend class Viewport;
 		
 		RenderTarget(const RenderTarget&) = delete;
