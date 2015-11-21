@@ -4,6 +4,10 @@
 namespace F3 {
 	
 	class DepthTarget {
+	public:
+		
+		virtual ~DepthTarget();
+		
 	private:
 		
 		friend class DepthTexture;

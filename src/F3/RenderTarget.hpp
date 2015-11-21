@@ -4,6 +4,10 @@
 namespace F3 {
 	
 	class RenderTarget {
+	public:
+		
+		virtual ~RenderTarget();
+		
 	private:
 		
 		friend class RenderTexture;
