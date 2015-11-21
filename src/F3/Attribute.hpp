@@ -14,11 +14,15 @@ namespace F3 {
 	};
 	
 	enum class AttributeType {
-		INT8,  UINT8,
-		INT16, UINT16,
-		INT32, UINT32,
-		FLOAT, DOUBLE,
-		HALF_FLOAT
+		I8  = 0,
+		U8  = 1,
+		I16 = 2,
+		U16 = 3,
+		I32 = 4,
+		U32 = 5,
+		F16 = 6,
+		F32 = 7,
+		F64 = 8,
 	};
 	
 	struct Attribute {
@@ -33,12 +37,10 @@ namespace F3 {
 			AttributeLength length,
 			AttributeType type,
 			std::size_t offset
-		) : buffer(buffer), length(length),
-			type(type), offset(offset)
-		{}
+		);
 		
 	};
 	
 }
 
-#endif // _F3_ATTRIBUTE_
+#endif
