@@ -9,6 +9,10 @@
 #include "IndexArray.hpp"
 
 #include "VertexBuffer.hpp"
+#include "VertexStaticBuffer.hpp"
+#include "VertexStreamBuffer.hpp"
+#include "VertexArray.hpp"
+
 #include "Attribute.hpp"
 #include "Texture.hpp"
 #include "Mesh.hpp"
