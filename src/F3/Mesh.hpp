@@ -23,30 +23,32 @@ namespace F3 {
 		
 		Mesh(
 			const Attribute& position,
-			std::size_t start, std::size_t count,
-			MeshType type = MeshType::TRIANGLES
+			std::size_t start,
+			std::size_t count,
+			MeshType type
 		);
 		
 		Mesh(
 			const Attribute& position,
 			const IndexBuffer& indices,
-			std::size_t start, std::size_t count,
-			MeshType type = MeshType::TRIANGLES
+			std::size_t start,
+			std::size_t count,
+			MeshType type
 		);
 		
 		Mesh(
 			const Attribute& position,
-			MeshType type = MeshType::TRIANGLES
+			MeshType type
 		);
 		
 		Mesh(
 			const Attribute& position,
 			const IndexBuffer& indices,
-			MeshType type = MeshType::TRIANGLES
+			MeshType type
 		);
 		
 	};
 	
 }
 
-#endif // _F3_MESH_
+#endif
