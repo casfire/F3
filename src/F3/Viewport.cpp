@@ -199,6 +199,6 @@ void Viewport::render(const Viewport& from, bool smooth) const
 	glBlitFramebuffer(
 		from.x, from.y, from.x + from.width, from.y + from.height,
 		x, y, x + width, y + height,
-		clearBits, smooth ? GL_NEAREST : GL_LINEAR
+		clearBits, smooth ? GL_LINEAR : GL_NEAREST
 	);
 }
