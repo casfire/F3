@@ -11,8 +11,8 @@ namespace F3 {
 	public:
 		
 		Viewport(
-			DepthTarget& depth,
-			RenderTarget& target,
+			const DepthTarget& depth,
+			const RenderTarget& target,
 			std::size_t x,
 			std::size_t y,
 			std::size_t width,
@@ -20,7 +20,7 @@ namespace F3 {
 		);
 		
 		Viewport(
-			RenderTarget& target,
+			const RenderTarget& target,
 			std::size_t x,
 			std::size_t y,
 			std::size_t width,
@@ -28,14 +28,28 @@ namespace F3 {
 		);
 		
 		Viewport(
-			DepthTarget& depth,
-			RenderTarget& target,
+			const DepthTarget& depth,
+			std::size_t x,
+			std::size_t y,
 			std::size_t width,
 			std::size_t height
 		);
 		
 		Viewport(
-			RenderTarget& target,
+			const DepthTarget& depth,
+			const RenderTarget& target,
+			std::size_t width,
+			std::size_t height
+		);
+		
+		Viewport(
+			const RenderTarget& target,
+			std::size_t width,
+			std::size_t height
+		);
+		
+		Viewport(
+			const DepthTarget& depth,
 			std::size_t width,
 			std::size_t height
 		);
@@ -55,6 +69,7 @@ namespace F3 {
 		~Viewport();
 		
 		void clear() const;
+		void render(const Viewport& from, bool smooth = true) const;
 		
 	private:
 		
@@ -63,7 +78,7 @@ namespace F3 {
 		
 		unsigned int ID;
 		int x, y, width, height;
-		int clearBits;
+		unsigned int clearBits;
 		
 	};
 	
