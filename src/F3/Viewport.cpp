@@ -185,6 +185,28 @@ Viewport::~Viewport()
 	if (ID > 0) glDeleteFramebuffers(1, &ID);
 }
 
+void Viewport::resize(
+	std::size_t x,
+	std::size_t y,
+	std::size_t width,
+	std::size_t height
+) {
+	this->x = x;
+	this->y = y;
+	this->width = width;
+	this->height = height;
+}
+
+void Viewport::resize(
+	std::size_t width,
+	std::size_t height
+) {
+	this->x = 0;
+	this->y = 0;
+	this->width = width;
+	this->height = height;
+}
+
 void Viewport::clear() const
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, ID);

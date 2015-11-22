@@ -68,6 +68,18 @@ namespace F3 {
 		
 		~Viewport();
 		
+		void resize(
+			std::size_t x,
+			std::size_t y,
+			std::size_t width,
+			std::size_t height
+		);
+		
+		void resize(
+			std::size_t width,
+			std::size_t height
+		);
+		
 		void clear() const;
 		void render(const Viewport& from, bool smooth = true) const;
 		
