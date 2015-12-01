@@ -13,9 +13,6 @@
 #include "VertexStreamBuffer.hpp"
 #include "VertexArray.hpp"
 
-#include "Attribute.hpp"
-#include "Mesh.hpp"
-
 #include "TextureTarget.hpp"
 #include "RenderTarget.hpp"
 #include "DepthTarget.hpp"
@@ -26,7 +23,11 @@
 #include "DepthBuffer.hpp"
 #include "RenderBuffer.hpp"
 
+#include "Sampler.hpp"
 #include "Viewport.hpp"
+
+#include "Attribute.hpp"
+#include "Mesh.hpp"
 
 namespace F3 {
 	

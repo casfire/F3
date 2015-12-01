@@ -8,13 +8,6 @@
 
 namespace F3 {
 	
-	enum class StaticTextureFilter {
-		NEAREST     = 0,
-		BILINEAR    = 1,
-		TRILINEAR   = 2,
-		ANISOTROPIC = 3,
-	};
-	
 	class StaticTexture : public TextureTarget {
 	public:
 		
@@ -22,13 +15,11 @@ namespace F3 {
 			std::size_t width,
 			std::size_t height,
 			std::size_t channels,
-			const std::uint8_t* pixels,
-			StaticTextureFilter filter
+			const std::uint8_t* pixels
 		);
 		
 		StaticTexture(
-			const std::string& filename,
-			StaticTextureFilter filter
+			const std::string& filename
 		);
 		
 	};

@@ -19,6 +19,7 @@ namespace F3 {
 		friend class StaticTexture;
 		friend class RenderTexture;
 		friend class DepthTexture;
+		friend class Sampler;
 		
 		TextureTarget(const TextureTarget&) = delete;
 		TextureTarget& operator=(const TextureTarget&) = delete;

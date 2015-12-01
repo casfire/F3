@@ -7,11 +7,6 @@
 
 namespace F3 {
 	
-	enum class RenderTextureFilter {
-		NEAREST  = 0,
-		BILINEAR = 1,
-	};
-	
 	enum class RenderTextureFormat {
 		U8  = 0,
 		U16 = 1,
@@ -26,7 +21,6 @@ namespace F3 {
 			std::size_t width,
 			std::size_t height,
 			std::size_t channels,
-			RenderTextureFilter filter,
 			RenderTextureFormat format
 		);
 		
