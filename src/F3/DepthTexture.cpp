@@ -23,7 +23,7 @@ DepthTexture::DepthTexture(
 	GLenum f = glFormat[static_cast<std::size_t>(format)];
 	glTexImage2D(
 		GL_TEXTURE_2D, 0, f, width, height,
-		0, f, GL_UNSIGNED_BYTE, nullptr
+		0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, nullptr
 	);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	if (glGetError() != GL_NO_ERROR) {
