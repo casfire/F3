@@ -4,7 +4,7 @@
 int main() {
 	
 	sf::Window window(sf::VideoMode(800, 600), "F3 engine", sf::Style::Default);
-	F3::LoadFunctions();
+	F3::Initialize();
 	
 	F3::Viewport view(800, 600);
 	

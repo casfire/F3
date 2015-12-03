@@ -35,10 +35,11 @@
 
 #include "Attribute.hpp"
 #include "Mesh.hpp"
+#include "Renderable.hpp"
 
 namespace F3 {
 	
-	void LoadFunctions();
+	void Initialize();
 	
 }
 
