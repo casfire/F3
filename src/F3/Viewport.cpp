@@ -53,8 +53,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? target.getWidth() : width)
+, height(height == 0 ? target.getHeight() : height)
 , clearBits(GL_COLOR_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -76,8 +76,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? stencil.getWidth() : width)
+, height(height == 0 ? stencil.getHeight() : height)
 , clearBits(GL_STENCIL_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -100,8 +100,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? target.getWidth() : width)
+, height(height == 0 ? target.getHeight() : height)
 , clearBits(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -124,8 +124,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? depth.getWidth() : width)
+, height(height == 0 ? depth.getHeight() : height)
 , clearBits(GL_DEPTH_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -148,8 +148,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? target.getWidth() : width)
+, height(height == 0 ? target.getHeight() : height)
 , clearBits(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -173,8 +173,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? stencil.getWidth() : width)
+, height(height == 0 ? stencil.getHeight() : height)
 , clearBits(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
@@ -203,8 +203,8 @@ Viewport::Viewport(
 : ID(0)
 , x(x)
 , y(y)
-, width(width)
-, height(height)
+, width(width == 0 ? target.getWidth() : width)
+, height(height == 0 ? target.getHeight() : height)
 , clearBits(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT)
 {
 	glGenFramebuffers(1, &ID);
