@@ -30,3 +30,21 @@ DepthTexture::DepthTexture(
 		throw Error("Failed to create depth texture.", __FILE__, __LINE__);
 	}
 }
+
+DepthTexture::DepthTexture(
+	std::size_t width,
+	std::size_t height
+)
+: TextureTarget(width, height, 1)
+, DepthTarget(TextureTarget::ID, width, height)
+{
+	glBindTexture(GL_TEXTURE_2D, TextureTarget::ID);
+	glTexImage2D(
+		GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height,
+		0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, nullptr
+	);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	if (glGetError() != GL_NO_ERROR) {
+		throw Error("Failed to create depth texture.", __FILE__, __LINE__);
+	}
+}

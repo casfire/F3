@@ -22,6 +22,11 @@ namespace F3 {
 			DepthTextureFormat format
 		);
 		
+		DepthTexture(
+			std::size_t width,
+			std::size_t height
+		);
+		
 	};
 	
 }
