@@ -16,12 +16,19 @@
 #include "TextureTarget.hpp"
 #include "RenderTarget.hpp"
 #include "DepthTarget.hpp"
+#include "StencilTarget.hpp"
 
 #include "StaticTexture.hpp"
 #include "RenderTexture.hpp"
 #include "DepthTexture.hpp"
+#include "StencilTexture.hpp"
+
 #include "DepthBuffer.hpp"
 #include "RenderBuffer.hpp"
+#include "StencilBuffer.hpp"
+
+#include "DepthStencilTexture.hpp"
+#include "DepthStencilBuffer.hpp"
 
 #include "Sampler.hpp"
 #include "Viewport.hpp"

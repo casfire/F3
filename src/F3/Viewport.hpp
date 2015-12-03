@@ -3,6 +3,7 @@
 
 #include "DepthTarget.hpp"
 #include "RenderTarget.hpp"
+#include "StencilTarget.hpp"
 #include <cstddef>
 
 namespace F3 {
@@ -11,73 +12,80 @@ namespace F3 {
 	public:
 		
 		Viewport(
-			const DepthTarget& depth,
-			const RenderTarget& target,
-			std::size_t x,
-			std::size_t y,
 			std::size_t width,
-			std::size_t height
+			std::size_t height,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		Viewport(
 			const RenderTarget& target,
-			std::size_t x,
-			std::size_t y,
-			std::size_t width,
-			std::size_t height
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
+		);
+		
+		Viewport(
+			const StencilTarget& stencil,
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
+		);
+		
+		Viewport(
+			const StencilTarget& stencil,
+			const RenderTarget& target,
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		Viewport(
 			const DepthTarget& depth,
-			std::size_t x,
-			std::size_t y,
-			std::size_t width,
-			std::size_t height
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		Viewport(
 			const DepthTarget& depth,
 			const RenderTarget& target,
-			std::size_t width,
-			std::size_t height
-		);
-		
-		Viewport(
-			const RenderTarget& target,
-			std::size_t width,
-			std::size_t height
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		Viewport(
 			const DepthTarget& depth,
-			std::size_t width,
-			std::size_t height
+			const StencilTarget& stencil,
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		Viewport(
-			std::size_t x,
-			std::size_t y,
-			std::size_t width,
-			std::size_t height
-		);
-		
-		Viewport(
-			std::size_t width,
-			std::size_t height
+			const DepthTarget& depth,
+			const StencilTarget& stencil,
+			const RenderTarget& target,
+			std::size_t width = 0,
+			std::size_t height = 0,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		~Viewport();
 		
 		void resize(
-			std::size_t x,
-			std::size_t y,
 			std::size_t width,
-			std::size_t height
-		);
-		
-		void resize(
-			std::size_t width,
-			std::size_t height
+			std::size_t height,
+			std::size_t x = 0,
+			std::size_t y = 0
 		);
 		
 		void clear() const;
