@@ -70,6 +70,7 @@ BlendState::BlendState(
 
 void BlendState::enable() const
 {
+	glEnable(GL_BLEND);
 	glBlendColor(
 		static_cast<float>((color >> 0 ) & 0xFF) / 255.f,
 		static_cast<float>((color >> 8 ) & 0xFF) / 255.f,
@@ -86,6 +87,11 @@ void BlendState::enable() const
 		factor[static_cast<std::size_t>(dstRGB)],
 		factor[static_cast<std::size_t>(dstAlpha)]
 	);
+}
+
+void BlendState::disable()
+{
+	glDisable(GL_BLEND);
 }
 
 bool BlendState::operator==(const BlendState& obj) const

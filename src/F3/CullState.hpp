@@ -20,6 +20,8 @@ namespace F3 {
 		CullState(Face front, Cull which);
 		
 		void enable() const;
+		static void disable();
+		
 		bool operator==(const CullState& obj) const;
 		
 	private:

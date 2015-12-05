@@ -23,8 +23,14 @@ CullState::CullState(Face front, Cull which)
 
 void CullState::enable() const
 {
+	glEnable(GL_CULL_FACE);
 	glCullFace(faces[static_cast<std::size_t>(which)]);
 	glFrontFace(fronts[static_cast<std::size_t>(front)]);
+}
+
+void CullState::disable()
+{
+	glDisable(GL_CULL_FACE);
 }
 
 bool CullState::operator==(const CullState& obj) const

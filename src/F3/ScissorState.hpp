@@ -16,6 +16,8 @@ namespace F3 {
 		);
 		
 		void enable() const;
+		static void disable();
+		
 		bool operator==(const ScissorState& obj) const;
 		
 	private:

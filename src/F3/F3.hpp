@@ -35,7 +35,6 @@
 #include "BlendState.hpp"
 #include "CullState.hpp"
 #include "ScissorState.hpp"
-#include "RenderState.hpp"
 
 #include "Renderable.hpp"
 #include "Sampler.hpp"

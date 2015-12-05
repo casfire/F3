@@ -56,6 +56,7 @@ StencilState::StencilState(
 void StencilState::enable() const
 {
 	GLenum f = faces[static_cast<std::size_t>(face)];
+	glEnable(GL_STENCIL_TEST);
 	glStencilMaskSeparate(f, maskWrite);
 	glStencilOpSeparate(
 		f,
@@ -69,6 +70,11 @@ void StencilState::enable() const
 		reference,
 		maskRead
 	);
+}
+
+void StencilState::disable()
+{
+	glDisable(GL_STENCIL_TEST);
 }
 
 bool StencilState::operator==(const StencilState& obj) const

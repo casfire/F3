@@ -57,6 +57,8 @@ namespace F3 {
 		);
 		
 		void enable() const;
+		static void disable();
+		
 		bool operator==(const BlendState& obj) const;
 		
 	private:

@@ -24,6 +24,8 @@ namespace F3 {
 		);
 		
 		void enable() const;
+		static void disable();
+		
 		bool operator==(const DepthState& obj) const;
 		
 	private:

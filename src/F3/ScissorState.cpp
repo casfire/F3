@@ -18,7 +18,13 @@ ScissorState::ScissorState(
 
 void ScissorState::enable() const
 {
+	glEnable(GL_SCISSOR_TEST);
 	glScissor(x, y, width, height);
+}
+
+void ScissorState::disable()
+{
+	glDisable(GL_SCISSOR_TEST);
 }
 
 bool ScissorState::operator==(const ScissorState& obj) const

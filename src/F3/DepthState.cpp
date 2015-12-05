@@ -28,6 +28,7 @@ DepthState::DepthState(
 
 void DepthState::enable() const
 {
+	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(func[static_cast<std::size_t>(test)]);
 	glDepthMask(write);
 	if (clamp) {
@@ -35,6 +36,11 @@ void DepthState::enable() const
 	} else {
 		glDisable(GL_DEPTH_CLAMP);
 	}
+}
+
+void DepthState::disable()
+{
+	glDisable(GL_DEPTH_TEST);
 }
 
 bool DepthState::operator==(const DepthState& obj) const
