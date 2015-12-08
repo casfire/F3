@@ -1,7 +1,6 @@
 #include "Pipeline.hpp"
 #include "Exception.hpp"
 #include "opengl.hpp"
-#include <vector>
 
 using namespace F3;
 using namespace GL;
@@ -75,7 +74,7 @@ std::string Pipeline::getInfoLog() const
 	GLint size = 0;
 	glGetProgramiv(ID, GL_INFO_LOG_LENGTH, &size);
 	if (size <= 0) return std::string();
-	std::vector<char> log(size);
-	glGetProgramInfoLog(ID, size, nullptr, static_cast<GLchar*>(log.data()));
-	return std::string(log.begin(), log.end());
+	std::string log(size - 1, '\0');
+	glGetProgramInfoLog(ID, size, nullptr, &log[0]);
+	return log;
 }
