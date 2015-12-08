@@ -22,6 +22,9 @@ StencilBuffer::StencilBuffer(
 		width, height
 	);
 	glBindRenderbuffer(GL_RENDERBUFFER, 0);
+	if (glGetError() != GL_NO_ERROR) {
+		throw Error("Failed to create stencil buffer.", __FILE__, __LINE__);
+	}
 }
 
 StencilBuffer::~StencilBuffer()
