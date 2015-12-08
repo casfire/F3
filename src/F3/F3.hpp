@@ -2,6 +2,7 @@
 #define _F3_
 
 #include "Exception.hpp"
+#include "Filename.hpp"
 
 #include "IndexBuffer.hpp"
 #include "IndexStaticBuffer.hpp"
@@ -35,6 +36,12 @@
 #include "BlendState.hpp"
 #include "CullState.hpp"
 #include "ScissorState.hpp"
+
+#include "Shader.hpp"
+#include "VertexShader.hpp"
+#include "FragmentShader.hpp"
+#include "GeometryShader.hpp"
+#include "Pipeline.hpp"
 
 #include "Renderable.hpp"
 #include "Sampler.hpp"
